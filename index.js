@@ -24,7 +24,7 @@ function set (obj, path, value) {
   var keys = Array.isArray(path) ? path : path.split('.');
   for (var i = 0; i < keys.length - 1; i++) {
     var key = keys[i];
-    if (deep.p && !hasOwnProp.call(obj, key)) obj[key] = {};
+    if (deep.p && !hasOwnProp.call(obj, key) || key == '__proto__' || key == 'prototype' || key == 'constructor') obj[key] = {};
     obj = obj[key];
   }
   obj[keys[i]] = value;
